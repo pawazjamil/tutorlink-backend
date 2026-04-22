@@ -5,7 +5,6 @@ const cors = require('cors');
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -14,13 +13,13 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB Error:', err.message));
 
-// Routes – CORRECTED PATHS
+// Routes – make sure these files exist in the 'routes' folder
 app.use('/api/tutors', require('./routes/tutors'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/bookings', require('./routes/bookings'));
 app.use('/api/messages', require('./routes/messages'));
 
-// Test route
+// Test route – MUST be before any wildcard or error handler
 app.get('/api/test', (req, res) => {
   res.json({ message: 'API is working!' });
 });
