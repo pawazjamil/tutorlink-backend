@@ -1,4 +1,7 @@
-require('dotenv').config();
+// app.use('/api/tutors', require('./routes/tutors'));
+// app.use('/api/users', require('./routes/users'));
+// app.use('/api/bookings', require('./routes/bookings'));
+// app.use('/api/messages', require('./routes/messages'));require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
