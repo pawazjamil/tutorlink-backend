@@ -14,11 +14,11 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB Error:', err.message));
 
-// Routes
-app.use('/api/tutors', require('./models/routes/tutors'));
-app.use('/api/users', require('./models/routes/users'));
-app.use('/api/bookings', require('./models/routes/bookings'));
-app.use('/api/messages', require('./models/routes/messages'));
+// Routes – CORRECTED PATHS
+app.use('/api/tutors', require('./routes/tutors'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/bookings', require('./routes/bookings'));
+app.use('/api/messages', require('./routes/messages'));
 
 // Test route
 app.get('/api/test', (req, res) => {
