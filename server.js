@@ -1,15 +1,38 @@
-const express = require("express");
-const cors = require("cors");
 require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
-app.use(cors()); // Allows the browser to connect
-app.use(express.json());
 
+// Middleware
+app.use(cors()); 
+app.use(express.json({ limit: '10mb' })); // Increased limit for profile pictures
+
+// 1. MongoDB Connection
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch(err => console.error("❌ MongoDB Error:", err.message));
+
+// 2. Your API Routes (Make sure these files exist in your /routes folder)
+try {
+  app.use('/api/tutors', require('./routes/tutors'));
+  app.use('/api/users', require('./routes/users'));
+  app.use('/api/bookings', require('./routes/bookings'));
+  // app.use('/api/messages', require('./routes/messages')); // Removed since we deleted messaging
+} catch (error) {
+  console.log("⚠️ Warning: Some route files are missing. Check your /routes folder.");
+}
+
+// 3. Test Route
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'API is working!' });
+});
+
+// 4. AI Chatbot Route
 app.post("/api/chat", async (req, res) => {
   try {
     const { message } = req.body;
-
     const RELAY_URL = "https://ais-dev-cfoiby2hu3ph6zyfz2j7mqu-869931825748.asia-east1.run.app/api/v1/chat/completions";
 
     const response = await fetch(RELAY_URL, {
@@ -29,12 +52,10 @@ app.post("/api/chat", async (req, res) => {
 
     const data = await response.json();
     
-    // 🔍 THIS WILL PRINT IN YOUR TERMINAL SO WE CAN SEE THE REAL ERROR
+    // Print the response in Render logs to debug if needed
     console.log("RelayKey Response:", data);
 
-    // Try to extract the text based on different possible formats
-    let botReply = "Sorry, I didn't catch that."; // fallback
-    
+    let botReply = "Sorry, I didn't catch that.";
     if (data.choices && data.choices[0] && data.choices[0].message) {
       botReply = data.choices[0].message.content;
     } else if (data.response) {
@@ -53,5 +74,6 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
+// Start Server
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Chatbot backend running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server on port ${PORT}`));
