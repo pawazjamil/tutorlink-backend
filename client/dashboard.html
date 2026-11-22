@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | TutorLink Bangladesh</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-luxury">
+        <div class="nav-container">
+            <div class="logo-luxury">
+                <i class="fas fa-feather-alt"></i>
+                <span>TutorLink <span class="gold">Bangladesh</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#tutors">Find Tutors</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="nav-auth" id="authButtons">
+                <!-- This will be handled by your dashboard.js -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content Container -->
+    <section class="hero-luxury" style="min-height: 80vh; padding-top: 100px; display: block;">
+        <div class="section-heading">
+            <div class="heading-icon"><i class="fas fa-chart-line"></i></div>
+            <h2>My <span class="gold">Dashboard</span></h2>
+            <p>Manage your bookings, routines, and account settings.</p>
+        </div>
+
+        <!-- The ID "dashboardContent" is where your dashboard.js should inject data -->
+        <div id="dashboardContent" style="max-width: 1000px; margin: 0 auto; background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.03);">
+            <h3 style="text-align: center; color: #888;">Loading dashboard data...</h3>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-luxury">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fas fa-feather-alt"></i><span>TutorLink Bangladesh</span>
+                <p>Where excellence meets education</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tutors">Tutors</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> hello@tutorlink.com</p>
+                <p><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2026 TutorLink Bangladesh — Where brilliance meets guidance</p>
+        </div>
+    </footer>
+
+    <!-- Connect your JS -->
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
