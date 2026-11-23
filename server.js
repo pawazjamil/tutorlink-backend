@@ -6,7 +6,14 @@ const cors = require("cors");
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+        'https://tutorlink-bangladesh.netlify.app',
+        'https://tutorlink-frontend-two.vercel.app',
+        'http://localhost:5500',
+        'http://127.0.0.1:5500'
+    ]
+}));
 app.use(express.json({ limit: "10mb" })); // Increased limit for profile pictures
 
 // 1. MongoDB Connection
